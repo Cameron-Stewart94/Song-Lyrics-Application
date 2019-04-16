@@ -1,0 +1,20 @@
+#logo {
+  color: white;
+  font-size: 30px;
+  border: 2px solid white;
+  padding: 5px;
+}
+
+body {
+  background-color: #9B9B9B;
+}
+
+.form {
+  text-align: center;
+  margin-top: 100px;
+}
+
+
+.hi {
+  color: red;
+}

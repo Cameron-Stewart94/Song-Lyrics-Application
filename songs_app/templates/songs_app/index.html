@@ -1,0 +1,18 @@
+
+{% extends "songs_app/base.html" %}
+{% load static %}
+{% block body_block %}
+  <div class="form">
+    <div class="container">
+      <form method="post" >
+          {{ artist_form.as_p }}
+          {{ song_form.as_p }}
+          {% csrf_token %}
+          <input type="submit" class = "btn btn-primary" value="Submit">
+      </form>
+    </div>
+
+    <h1 class='hi'>hi</h1>
+  </div>
+
+{% endblock %}
