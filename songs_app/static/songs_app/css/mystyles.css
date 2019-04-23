@@ -1,0 +1,49 @@
+#logo {
+  color: white;
+  font-size: 30px;
+  border: 2px solid white;
+  padding: 5px;
+}
+
+body {
+  background-color: white;
+}
+
+.form {
+  text-align: center;
+  margin-top: 100px;
+
+}
+
+
+.lyrics {
+  text-align: center;
+  border: 2px solid black;
+  margin-top: 80px;
+  padding-top: 30px;
+
+}
+
+.introduction {
+  text-align: center;
+  margin-top: 40px;
+}
+
+#id_artist {
+  width: 500px;
+  border-radius: 30px;
+  border: 2px solid #9B9B9B;
+  height: 40px;
+}
+
+#id_song {
+  width: 500px;
+  border-radius: 30px;
+  border: 2px solid #9B9B9B;
+  height: 40px;
+}
+
+
+input, input[placeholder] {
+    text-align: center;
+}

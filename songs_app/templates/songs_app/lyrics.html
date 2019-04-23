@@ -2,8 +2,10 @@
 {% extends "songs_app/base.html" %}
 {% load static %}
 {% block body_block %}
-  <div id="lyrics">
-    <h1>shit</h1>
+  <div class="lyrics">
+    <h1>{{ artist }} Lyrics</h1>
+    <br>
+    <h3>"{{ song }}"</h3>
     {{ lyrics|linebreaks }}
   </div>
 

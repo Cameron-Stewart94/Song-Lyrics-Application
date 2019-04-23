@@ -17,16 +17,18 @@ def index(request):
         if artist_form.is_valid() and song_form.is_valid():
             artist = artist_form.save(commit=True)
             song = song_form.save(commit=False)
-            song.artist = artist
             web_lyrics = Lyrics(str(artist.artist), str(song.song))
             web_lyrics.fetch_data()
-
+            song.artist = artist
             song.lyrics = web_lyrics.song_lyrics
+
+            song.song = web_lyrics.song_name
+            case_artist = web_lyrics.artist_name
 
             song.save()
 
 
-            return render(request, 'songs_app/lyrics.html', {'lyrics': song.lyrics})
+            return render(request, 'songs_app/lyrics.html', {'lyrics': song.lyrics, 'artist': case_artist, 'song': song.song})
 
 
 
