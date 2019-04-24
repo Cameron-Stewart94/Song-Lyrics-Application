@@ -18,7 +18,7 @@ def index(request):
         if artist_form.is_valid() and song_form.is_valid():
             artist_value = artist_form.cleaned_data['artist']
             song_value = song_form.cleaned_data['song']
-            web_lyrics = Lyrics(str(artist_value), str(song_value))
+            web_lyrics = Lyrics(artist_value, song_value)
             web_lyrics.fetch_data()
             song = song_form.save(commit=False)
             artist, created = Artist.objects.get_or_create(artist = web_lyrics.artist_name)
@@ -41,6 +41,3 @@ def index(request):
 
 def lyrics(request):
     return render(request, 'songs_app/lyrics.html')
-
-
-pass
