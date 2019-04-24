@@ -2,21 +2,26 @@
 {% extends "songs_app/base.html" %}
 {% load static %}
 {% block body_block %}
-  <div class="introduction">
-    <h2>Welcome to Lyrics Generator</h2>
-    <h3>Fill in details below to generate song lyrics</h3>
-  </div>
+  <div class="container">
+    <div class="jumbotron">
+      <div class="introduction">
+        <h2>Welcome to Lyrics Generator</h2>
+        <h3>Fill in details below to generate song lyrics</h3>
+      </div>
+        <div class="form">
 
-  <div class="form">
-    <div class="container">
-      <form method="post" autocomplete="off">
-          {{ artist_form.as_p }}
-          {{ song_form.as_p }}
-          {% csrf_token %}
-          <input type="submit" class = "btn btn-primary" value="Submit">
-      </form>
+          <form method="post" autocomplete="off">
+              {{ artist_form.as_p }}
+              {{ song_form.as_p }}
+              {% csrf_token %}
+              <input type="submit" class = "btn btn-primary" value="Submit">
+          </form>
+
+
+      </div>
     </div>
-
   </div>
+
+
 
 {% endblock %}
