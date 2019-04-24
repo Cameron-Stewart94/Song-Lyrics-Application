@@ -47,3 +47,13 @@ body {
 input, input[placeholder] {
     text-align: center;
 }
+
+
+.invalid_choice {
+  text-align: center;
+  margin-top: 200px;
+}
+
+#try_again {
+  margin-top: 20px;
+}

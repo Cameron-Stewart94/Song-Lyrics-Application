@@ -1,6 +1,9 @@
 {% extends "songs_app/base.html" %}
 {% load static %}
 {% block body_block %}
+  <div class="invalid_choice">
+    <h1>Invalid Choice, Try Again</h1>
+    <a id='try_again' class="btn btn-primary" href="{% url 'songs_app:index' %}" role="button">Back</a>
 
-  <h1>You Fucked Up</h1>
+  </div>
 {% endblock %}
