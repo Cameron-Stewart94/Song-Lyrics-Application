@@ -21,7 +21,7 @@ def index(request):
             web_lyrics = Lyrics(str(artist.artist), str(song.song))
             web_lyrics.fetch_data()
             song.lyrics = web_lyrics.song_lyrics
-
+            song.artist = artist
             song.song = web_lyrics.song_name
             case_artist = web_lyrics.artist_name
 
@@ -31,10 +31,8 @@ def index(request):
 
 
 
+
             return render(request, 'songs_app/lyrics.html', {'lyrics': song.lyrics, 'artist': case_artist, 'song': song.song})
-
-
-
 
 
     else:
