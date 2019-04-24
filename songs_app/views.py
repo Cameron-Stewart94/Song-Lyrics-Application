@@ -25,14 +25,12 @@ def index(request):
             song.song = web_lyrics.song_name
             case_artist = web_lyrics.artist_name
 
-            song.save()
+            try:
+                song.save()
+            except:
+                return render(request, 'songs_app/lyrics.html', {'lyrics': song.lyrics, 'artist': case_artist, 'song': song.song})
 
-
-
-
-
-
-            return render(request, 'songs_app/lyrics.html', {'lyrics': song.lyrics, 'artist': case_artist, 'song': song.song})
+        return render(request, 'songs_app/lyrics.html', {'lyrics': song.lyrics, 'artist': case_artist, 'song': song.song})
 
 
     else:
