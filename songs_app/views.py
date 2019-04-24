@@ -41,3 +41,6 @@ def index(request):
 
 def lyrics(request):
     return render(request, 'songs_app/lyrics.html')
+
+
+pass
