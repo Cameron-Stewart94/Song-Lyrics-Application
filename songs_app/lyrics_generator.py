@@ -54,6 +54,7 @@ class Lyrics:
 
         def save_song_data(web_scrape, song_info):
             self.song_lyrics += web_scrape['Lyrics']
+            self.song_lyrics = self.song_lyrics.lstrip()
             self.song_name = song_info[0]
             self.artist_name = song_info[1]
             self.song_description += '\n'.join(song_info[2 : ])
