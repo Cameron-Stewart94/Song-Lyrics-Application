@@ -10,7 +10,7 @@ class Artist(models.Model):
 
 
 class Song(models.Model):
-    artist = models.OneToOneField(Artist, on_delete=models.CASCADE)
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
     song = models.CharField(max_length=264)
     lyrics = models.TextField(null=True, blank=True)
 
