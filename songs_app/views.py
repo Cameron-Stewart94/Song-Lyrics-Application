@@ -16,10 +16,12 @@ def index(request):
         song_form = SongChoice(data=request.POST)
 
         if artist_form.is_valid() and song_form.is_valid():
-            artist, created = Artist.objects.get_or_create(**artist_form.cleaned_data)
-            song = song_form.save(commit=False)
-            web_lyrics = Lyrics(str(artist.artist), str(song.song))
+            artist_value = artist_form.cleaned_data['artist']
+            song_value = song_form.cleaned_data['song']
+            web_lyrics = Lyrics(str(artist_value), str(song_value))
             web_lyrics.fetch_data()
+            song = song_form.save(commit=False)
+            artist, created = Artist.objects.get_or_create(artist = web_lyrics.artist_name)
             song.lyrics = web_lyrics.song_lyrics
             song.artist = artist
             song.song = web_lyrics.song_name
