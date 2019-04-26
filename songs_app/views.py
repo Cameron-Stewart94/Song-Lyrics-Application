@@ -6,6 +6,7 @@ from songs_app.lyrics_generator import Lyrics
 from songs_app.models import Artist, Song
 from songs_app.query import a, top_song
 
+
 # Create your views here.
 def index(request):
     artist_form = ArtistChoice()
@@ -20,25 +21,31 @@ def index(request):
             artist_value = artist_form.cleaned_data['artist']
             song_value = song_form.cleaned_data['song']
 
+            top_song_info = top_song()
 
+            if artist_value.upper() in top_song_info['artists'] and song_value.upper() in top_song_info['songs']:
+                em = Song.objects.filter(artist__artist__iexact=artist_value).filter(song__iexact=song_value)
 
-            web_lyrics = Lyrics(artist_value, song_value)
-            try:
-                web_lyrics.fetch_data()
-            except:
-                return render(request, 'songs_app/invalid_choice.html')
+                return render(request, 'songs_app/lyrics.html', {'artist': em[0].artist, 'song': em[0].song, 'lyrics': em[0].lyrics})
+
             else:
-                song = song_form.save(commit=False)
-                artist, created = Artist.objects.get_or_create(artist = web_lyrics.artist_name)
-                song.lyrics = web_lyrics.song_lyrics
-                song.artist = artist
-                song.song = web_lyrics.song_name
-                case_artist = web_lyrics.artist_name
-
+                web_lyrics = Lyrics(artist_value, song_value)
                 try:
-                    song.save()
+                    web_lyrics.fetch_data()
                 except:
-                    return render(request, 'songs_app/lyrics.html', {'lyrics': song.lyrics, 'artist': case_artist, 'song': song.song})
+                    return render(request, 'songs_app/invalid_choice.html')
+                else:
+                    song = song_form.save(commit=False)
+                    artist, created = Artist.objects.get_or_create(artist = web_lyrics.artist_name)
+                    song.lyrics = web_lyrics.song_lyrics
+                    song.artist = artist
+                    song.song = web_lyrics.song_name
+                    case_artist = web_lyrics.artist_name
+
+                    try:
+                        song.save()
+                    except:
+                        return render(request, 'songs_app/lyrics.html', {'lyrics': song.lyrics, 'artist': case_artist, 'song': song.song})
 
         return render(request, 'songs_app/lyrics.html', {'lyrics': song.lyrics, 'artist': case_artist, 'song': song.song})
 
