@@ -13,7 +13,7 @@ class Song(models.Model):
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
     song = models.CharField(max_length=264)
     lyrics = models.TextField(null=True, blank=True)
-    count = models.IntegerField(default=0)
+    searches = models.IntegerField(default=1)
 
     class Meta:
         unique_together = ['artist', 'song']

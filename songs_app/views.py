@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from songs_app.lyrics_generator import Lyrics
 from songs_app.models import Artist, Song
 from songs_app.query import a, top_song
-
+from django.db.models import F
 
 # Create your views here.
 def index(request):
@@ -25,6 +25,7 @@ def index(request):
 
             if artist_value.upper() in top_song_info['artists'] and song_value.upper() in top_song_info['songs']:
                 em = Song.objects.filter(artist__artist__iexact=artist_value).filter(song__iexact=song_value)
+                Song.objects.filter(artist__artist__iexact=artist_value).filter(song__iexact=song_value).update(searches=F('searches')+1)
 
                 return render(request, 'songs_app/lyrics.html', {'artist': em[0].artist, 'song': em[0].song, 'lyrics': em[0].lyrics})
 
