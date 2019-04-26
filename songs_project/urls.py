@@ -21,5 +21,4 @@ urlpatterns = [
     path('', views.index, name = 'index'),
     path('admin/', admin.site.urls),
     path('songs_app/', include('songs_app.urls', namespace='songs_app')),
-    path('random_song/', views.random_song, name='random_song')
 ]
