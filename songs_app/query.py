@@ -23,4 +23,6 @@ def top_song():
     for i in range(len(song_info)):
         song_lst.append(str(song_info[i].song).upper())
 
-    return song_lst
+
+
+    return {'artists': artist_lst, 'songs': song_lst}
