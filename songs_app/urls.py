@@ -5,5 +5,6 @@ app_name = 'songs_app'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('lyrics/', views.lyrics, name='lyrics')
+    path('lyrics/', views.lyrics, name='lyrics'),
+    path('random_song/', views.random_song, name='random_song')
 ]

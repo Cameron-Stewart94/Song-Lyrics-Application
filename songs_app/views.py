@@ -18,6 +18,7 @@ def index(request):
         if artist_form.is_valid() and song_form.is_valid():
             artist_value = artist_form.cleaned_data['artist']
             song_value = song_form.cleaned_data['song']
+
             web_lyrics = Lyrics(artist_value, song_value)
             try:
                 web_lyrics.fetch_data()
@@ -45,3 +46,9 @@ def index(request):
 
 def lyrics(request):
     return render(request, 'songs_app/lyrics.html')
+
+
+
+
+def random_song(request):
+    return render(request, 'songs_app/random_song.html')
