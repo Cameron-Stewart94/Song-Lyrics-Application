@@ -13,9 +13,14 @@ def a():
     return {'artist': artist, 'song': song, 'lyrics': lyrics}
 
 def top_song():
-    art = Song.objects.all()
-    artists_and_songs = defaultdict(list)
-    for artist in art:
-        artists_and_songs[artist.artist].append(artist.song)
+    artist_info = Artist.objects.all()
+    song_info = Song.objects.all()
+    artist_lst =[]
+    song_lst = []
+    for i in range(len(artist_info)):
+        artist_lst.append(str(artist_info[i].artist).upper())
 
-    return artists_and_songs
+    for i in range(len(song_info)):
+        song_lst.append(str(song_info[i].song).upper())
+
+    return song_lst
