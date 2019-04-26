@@ -4,7 +4,7 @@ from songs_app.forms import SongChoice, ArtistChoice
 from django.http import HttpResponseRedirect, HttpResponse
 from songs_app.lyrics_generator import Lyrics
 from songs_app.models import Artist, Song
-from songs_app.query import a
+from songs_app.query import a, top_song
 
 # Create your views here.
 def index(request):
@@ -54,3 +54,8 @@ def lyrics(request):
 def random_song(request):
     msg = a()
     return render(request, 'songs_app/random_song.html', {'artist': msg['artist'], 'song': msg['song'], 'lyrics': msg['lyrics']} )
+
+
+def top_songs(request):
+    test = top_song()
+    return render(request, 'songs_app/top_songs.html', {'test': test})

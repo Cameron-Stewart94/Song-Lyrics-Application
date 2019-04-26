@@ -1,5 +1,6 @@
 from songs_app.models import Artist, Song
 from random import randint
+from collections import defaultdict
 
 def a():
 
@@ -10,3 +11,11 @@ def a():
     artist = b[random_number].artist
     song = b[random_number].song
     return {'artist': artist, 'song': song, 'lyrics': lyrics}
+
+def top_song():
+    art = Song.objects.all()
+    artists_and_songs = defaultdict(list)
+    for artist in art:
+        artists_and_songs[artist.artist].append(artist.song)
+
+    return artists_and_songs
