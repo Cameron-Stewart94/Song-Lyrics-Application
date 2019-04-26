@@ -64,4 +64,10 @@ def top_songs(request):
 
 
 def test(request):
-    return render(request, 'songs_app/test.html')
+    a = 'eminem'
+    b = 'stan'
+    c = top_song()
+
+    if a.upper() in c['artists'] and b.upper() in c['songs']:
+        em = Song.objects.filter(artist__artist__iexact=a).filter(song__iexact=b)
+    return render(request, 'songs_app/test.html', {'here': em[0].lyrics})
