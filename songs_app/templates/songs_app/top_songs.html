@@ -1,7 +1,22 @@
 {% extends "songs_app/base.html" %}
 {% load static %}
-{% block body_block %}
+{% load my_extras %}
 
-  {{ test }}
+{% block body_block %}
+  <div class="container">
+    <h1>Top 10 Songs:</h1>
+  </div>
+
+  <table>
+    <th>Artist</th>
+    <th>Song</th>
+    <th>searches</th>
+    {% for i in artist_lst %}
+      <tr>
+        <td>{{ artist_lst|List|index:x }}</td>
+      </tr>
+    {% endfor %}
+
+  </table>
 
 {% endblock %}

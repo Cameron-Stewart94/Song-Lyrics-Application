@@ -67,8 +67,15 @@ def random_song(request):
 
 
 def top_songs(request):
-    test = top_song()
-    return render(request, 'songs_app/top_songs.html', {'test': test})
+    count_query = Song.objects.order_by('-searches')
+    artist_lst = []
+    song_lst = []
+    searches_lst = []
+    for i in range(len(count_query)):
+        artist_lst.append(count_query[i].artist)
+        song_lst.append(count_query[i].song)
+        searches_lst.append(count_query[i].searches)
+    return render(request, 'songs_app/top_songs.html', {'artist_lst': artist_lst, 'song_lst' : song_lst, 'searches_lst': searches_lst, 'range' : range(len(artist_lst))})
 
 
 def test(request):
