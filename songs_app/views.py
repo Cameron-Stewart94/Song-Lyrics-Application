@@ -7,7 +7,6 @@ from songs_app.models import Artist, Song
 from songs_app.query import a, top_song
 from django.db.models import F
 
-# Create your views here.
 def index(request):
     artist_form = ArtistChoice()
     song_form = SongChoice()
