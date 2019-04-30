@@ -8,12 +8,16 @@
   </div>
 
   <table>
+    <th>Position</th>
     <th>Artist</th>
     <th>Song</th>
     <th>searches</th>
-    {% for i in artist_lst %}
+    {% for i in range %}
       <tr>
-        <td>{{ artist_lst|List|index:x }}</td>
+        <td> {{ i|add:1 }}</td>
+        <td>{{ artist_lst|index:i }}</td>
+        <td>{{ song_lst|index:i }}</td>
+        <td>{{ searches_lst|index:i}}</td>
       </tr>
     {% endfor %}
 

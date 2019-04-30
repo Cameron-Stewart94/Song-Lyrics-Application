@@ -8,5 +8,6 @@ urlpatterns = [
     path('lyrics/', views.lyrics, name='lyrics'),
     path('random_song/', views.random_song, name='random_song'),
     path('top_songs/', views.top_songs, name='top_songs'),
-    path('test/', views.test, name='test')
+    path('test/', views.test, name='test'),
+    path('top_lyrics/', views.top_lyrics, name='top_lyrics')
 ]
