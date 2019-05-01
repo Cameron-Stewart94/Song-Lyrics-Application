@@ -3,3 +3,4 @@ from .models import Song, Artist
 
 admin.site.register(Song)
 admin.site.register(Artist)
+# Registers Song and Artist models to the database
