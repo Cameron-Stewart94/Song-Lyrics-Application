@@ -53,17 +53,10 @@ def index(request):
                     song.artist = artist
                     song.song = web_lyrics.song_name
                     case_artist = web_lyrics.artist_name
+                    song.save()
                     # Stores artist, song and lyrics in corresponding fields in database
-                    try:
-                        song.save()
-                    except:
-                        return render(request, 'songs_app/lyrics.html', {'lyrics': song.lyrics, 'artist': case_artist, 'song': song.song})
-
         return render(request, 'songs_app/lyrics.html', {'lyrics': song.lyrics, 'artist': case_artist, 'song': song.song})
 
-
-    else:
-        print('Invalid Information Provided')
     return render(request, 'songs_app/index.html', {'artist_form': artist_form, 'song_form': song_form})
 
 def lyrics(request):
