@@ -29,11 +29,11 @@ def index(request):
                 """Checks if the user input already existis in the database.
                 If the user input exists in the database, view returns song inofrmation stored in the database, avoiding scraping the web """
 
-                em = Song.objects.filter(artist__artist__iexact=artist_value).filter(song__iexact=song_value)
+                song_filter = Song.objects.filter(artist__artist__iexact=artist_value).filter(song__iexact=song_value)
                 # Filters for searched artist and song, using iexact so the filter fields are case insensitive
                 Song.objects.filter(artist__artist__iexact=artist_value).filter(song__iexact=song_value).update(searches=F('searches')+1)
                 # If the song exists in the database, the searches field is increased by 1 using F. Default value is 1 for the first time a song is searched.
-                return render(request, 'songs_app/lyrics.html', {'artist': em[0].artist, 'song': em[0].song, 'lyrics': em[0].lyrics})
+                return render(request, 'songs_app/lyrics.html', {'artist': song_filter[0].artist, 'song': song_filter[0].song, 'lyrics': song_filter[0].lyrics})
 
             else:
                 web_lyrics = Lyrics(artist_value, song_value)
@@ -67,6 +67,7 @@ def index(request):
     return render(request, 'songs_app/index.html', {'artist_form': artist_form, 'song_form': song_form})
 
 def lyrics(request):
+    # Blank lyrics function needed to ensure lyrics.html page is rendered
     pass
 
 
