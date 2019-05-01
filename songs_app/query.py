@@ -25,3 +25,17 @@ def database_check():
         song_lst.append(str(song_info[i].song).upper())
 
     return {'artists': artist_lst, 'songs': song_lst}
+
+
+def top_songs_generator():
+    count_query = Song.objects.order_by('-searches')
+    # Querys songs and orders them by number of searches in reverse order
+    artist_lst = []
+    song_lst = []
+    searches_lst = []
+    for i in range(len(count_query)):
+        artist_lst.append(count_query[i].artist)
+        song_lst.append(count_query[i].song)
+        searches_lst.append(count_query[i].searches)
+    # Appends song information to corresponding list from most searched song to least searhced song
+    return {'artist_lst': artist_lst, 'song_lst': song_lst, 'searches_lst': searches_lst}

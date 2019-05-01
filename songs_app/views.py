@@ -4,7 +4,7 @@ from songs_app.forms import SongChoice, ArtistChoice
 from django.http import HttpResponseRedirect, HttpResponse
 from songs_app.lyrics_generator import Lyrics
 from songs_app.models import Artist, Song
-from songs_app.query import random_song_generator, database_check
+from songs_app.query import random_song_generator, database_check, top_songs_generator
 from django.db.models import F
 
 def index(request):
@@ -64,8 +64,6 @@ def lyrics(request):
     pass
 
 
-
-
 def random_song(request):
     # View displays random song using random_song_generator function in queries.py
     random_song = random_song_generator()
@@ -73,12 +71,6 @@ def random_song(request):
 
 
 def top_songs(request):
-    count_query = Song.objects.order_by('-searches')
-    artist_lst = []
-    song_lst = []
-    searches_lst = []
-    for i in range(len(count_query)):
-        artist_lst.append(count_query[i].artist)
-        song_lst.append(count_query[i].song)
-        searches_lst.append(count_query[i].searches)
-    return render(request, 'songs_app/top_songs.html', {'artist_lst': artist_lst, 'song_lst' : song_lst, 'searches_lst': searches_lst, 'range' : range(10)})
+    top_ten_songs = top_songs_generator()
+    # Renders top 10 songs to html page
+    return render(request, 'songs_app/top_songs.html', {'artist_lst': top_ten_songs['artist_lst'], 'song_lst' : top_ten_songs['song_lst'], 'searches_lst': top_ten_songs['searches_lst'], 'range' : range(10)})
