@@ -64,6 +64,7 @@ class Lyrics:
             # Class's song_name and artist_name vairables are overridden with correctly fomratted strings
             self.song_description += '\n'.join(song_information[2 : ])
 
+
         song_url = format_song_to_url(self.artist_name, self.song_name)
         web_scrape = web_scraper(song_url)
         song_information = remove_whitespace(web_scrape['Song Information'])
