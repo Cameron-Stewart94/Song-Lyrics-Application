@@ -59,10 +59,6 @@ def index(request):
 
     return render(request, 'songs_app/index.html', {'artist_form': artist_form, 'song_form': song_form})
 
-def lyrics(request):
-    # Blank lyrics function needed to ensure lyrics.html page is rendered
-    pass
-
 
 def random_song(request):
     # View displays random song using random_song_generator function in queries.py
@@ -74,3 +70,8 @@ def top_songs(request):
     top_ten_songs = top_songs_generator()
     # Renders top 10 songs to html page
     return render(request, 'songs_app/top_songs.html', {'artist_lst': top_ten_songs['artist_lst'], 'song_lst' : top_ten_songs['song_lst'], 'searches_lst': top_ten_songs['searches_lst'], 'range' : range(10)})
+
+
+def lyrics(request):
+    # Blank lyrics function needed to ensure lyrics.html page is rendered
+    pass
