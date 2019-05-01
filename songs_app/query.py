@@ -12,7 +12,8 @@ def random_song_generator():
     lyrics = song_query[random_number].lyrics
     return {'artist': artist, 'song': song, 'lyrics': lyrics}
 
-def top_song():
+def database_check():
+    # Function queries database and lists all artists and songs in the database
     artist_info = Artist.objects.all()
     song_info = Song.objects.all()
     artist_lst =[]

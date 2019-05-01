@@ -4,7 +4,7 @@ from songs_app.forms import SongChoice, ArtistChoice
 from django.http import HttpResponseRedirect, HttpResponse
 from songs_app.lyrics_generator import Lyrics
 from songs_app.models import Artist, Song
-from songs_app.query import random_song_generator, top_song
+from songs_app.query import random_song_generator, database_check
 from django.db.models import F
 
 def index(request):
@@ -22,10 +22,10 @@ def index(request):
             # Checks forms are valid and cleans data if they are.
             artist_value = artist_form.cleaned_data['artist']
             song_value = song_form.cleaned_data['song']
-            top_song_information = top_song()
+            database_information = database_check()
             # Creates instance of top_song_information class
 
-            if artist_value.upper() in top_song_info['artists'] and song_value.upper() in top_song_info['songs']:
+            if artist_value.upper() in database_information['artists'] and song_value.upper() in database_information['songs']:
                 em = Song.objects.filter(artist__artist__iexact=artist_value).filter(song__iexact=song_value)
                 Song.objects.filter(artist__artist__iexact=artist_value).filter(song__iexact=song_value).update(searches=F('searches')+1)
 
@@ -64,6 +64,7 @@ def lyrics(request):
 
 
 def random_song(request):
+    # View displays random song using random_song_generator function in queries.py
     random_song = random_song_generator()
     return render(request, 'songs_app/random_song.html', {'artist': random_song['artist'], 'song': random_song['song'], 'lyrics': random_song['lyrics']} )
 
