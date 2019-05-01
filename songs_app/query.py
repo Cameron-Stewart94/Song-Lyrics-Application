@@ -2,14 +2,14 @@ from songs_app.models import Artist, Song
 from random import randint
 from collections import defaultdict
 
-def a():
-
-    b = Song.objects.all()
-    no_of_songs = len(b)
-    random_number = randint(0, no_of_songs - 1)
-    lyrics = b[random_number].lyrics
-    artist = b[random_number].artist
-    song = b[random_number].song
+def random_song_generator():
+    # Function generates a random song from database
+    song_query = Song.objects.all()
+    number_of_songs = len(song_query)
+    random_number = randint(0, number_of_songs - 1)
+    artist = song_query[random_number].artist
+    song = song_query[random_number].song
+    lyrics = song_query[random_number].lyrics
     return {'artist': artist, 'song': song, 'lyrics': lyrics}
 
 def top_song():
