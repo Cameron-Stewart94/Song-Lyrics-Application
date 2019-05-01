@@ -82,16 +82,3 @@ def top_songs(request):
         song_lst.append(count_query[i].song)
         searches_lst.append(count_query[i].searches)
     return render(request, 'songs_app/top_songs.html', {'artist_lst': artist_lst, 'song_lst' : song_lst, 'searches_lst': searches_lst, 'range' : range(10)})
-
-
-def test(request):
-    a = 'eminem'
-    b = 'stan'
-    c = top_song()
-
-    if a.upper() in c['artists'] and b.upper() in c['songs']:
-        em = Song.objects.filter(artist__artist__iexact=a).filter(song__iexact=b)
-    return render(request, 'songs_app/test.html', {'here': em[0].lyrics})
-
-def top_lyrics(request):
-    return render(request, 'songs_app/top_lyrics.html', {'artist': 'a', 'song': 'b', 'lyrics': 'c'})
