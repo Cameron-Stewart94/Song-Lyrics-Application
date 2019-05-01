@@ -2,25 +2,36 @@
 {% load static %}
 {% load my_extras %}
 
+{% block head_block %}
+  <link rel="stylesheet" href="{% static "songs_app/css/top_song_styles1.css" %}"/>
+{% endblock %}
+
 {% block body_block %}
+
+
   <div class="container">
-    <h1>Top 10 Songs:</h1>
+    <div class="jumbotron">
+
+      <h1>Top 10 Songs:</h1>
+
+      <table align = 'center'>
+        <th>Position</th>
+        <th>Artist</th>
+        <th>Song</th>
+        <th>Searches</th>
+        {% for i in range %}
+          <tr>
+            <td> {{ i|add:1 }}</td>
+            <td>{{ artist_lst|index:i }}</td>
+            <td>{{ song_lst|index:i }}</td>
+            <td>{{ searches_lst|index:i}}</td>
+          </tr>
+        {% endfor %}
+
+      </table>
+    </div>
   </div>
 
-  <table>
-    <th>Position</th>
-    <th>Artist</th>
-    <th>Song</th>
-    <th>searches</th>
-    {% for i in range %}
-      <tr>
-        <td> {{ i|add:1 }}</td>
-        <td>{{ artist_lst|index:i }}</td>
-        <td>{{ song_lst|index:i }}</td>
-        <td>{{ searches_lst|index:i}}</td>
-      </tr>
-    {% endfor %}
 
-  </table>
 
 {% endblock %}

@@ -1,9 +1,20 @@
 {% extends "songs_app/base.html" %}
 {% load static %}
+
+{% block head_block %}
+  <link rel="stylesheet" href="{% static "songs_app/css/invalid_choice_styles.css" %}"/>
+{% endblock %}
+
 {% block body_block %}
-  <div class="invalid_choice">
-    <h1>Invalid Choice, Try Again</h1>
-    <a id='try_again' class="btn btn-primary" href="{% url 'songs_app:index' %}" role="button">Back</a>
+  <div class="container">
+    <div class="jumbotron">
+      <div class="invalid_choice">
+        <h1>Invalid Choice, Try Again</h1>
+        <a id='try_again' class="btn btn-primary" href="{% url 'songs_app:index' %}" role="button">Back</a>
+
+      </div>
+    </div>
 
   </div>
+
 {% endblock %}

@@ -1,10 +1,15 @@
 {% extends "songs_app/base.html" %}
 {% load static %}
+
+{% block head_block %}
+  <link rel="stylesheet" href="{% static "songs_app/css/lyrics_styles.css" %}"/>
+{% endblock %}
+
 {% block body_block %}
 
-    <div class="lyrics">
+    <div class="lyrics_background">
       <div class="container">
-        <div class="lyrics2">
+        <div class="lyrics">
           <h1>{{ artist }} Lyrics</h1>
           <br>
           <h3>"{{ song }}"</h3>
