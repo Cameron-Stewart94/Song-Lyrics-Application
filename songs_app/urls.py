@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 
 app_name = 'songs_app'
+# Sets app name to song's app so template tagging can be used
 
 urlpatterns = [
     path('', views.index, name='index'),
