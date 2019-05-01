@@ -23,28 +23,37 @@ def index(request):
             artist_value = artist_form.cleaned_data['artist']
             song_value = song_form.cleaned_data['song']
             database_information = database_check()
-            # Creates instance of top_song_information class
+            # Runs database_check function to return lists of artists and songs in the database
 
             if artist_value.upper() in database_information['artists'] and song_value.upper() in database_information['songs']:
-                em = Song.objects.filter(artist__artist__iexact=artist_value).filter(song__iexact=song_value)
-                Song.objects.filter(artist__artist__iexact=artist_value).filter(song__iexact=song_value).update(searches=F('searches')+1)
+                """Checks if the user input already existis in the database.
+                If the user input exists in the database, view returns song inofrmation stored in the database, avoiding scraping the web """
 
+                em = Song.objects.filter(artist__artist__iexact=artist_value).filter(song__iexact=song_value)
+                # Filters for searched artist and song, using iexact so the filter fields are case insensitive
+                Song.objects.filter(artist__artist__iexact=artist_value).filter(song__iexact=song_value).update(searches=F('searches')+1)
+                # If the song exists in the database, the searches field is increased by 1 using F. Default value is 1 for the first time a song is searched.
                 return render(request, 'songs_app/lyrics.html', {'artist': em[0].artist, 'song': em[0].song, 'lyrics': em[0].lyrics})
 
             else:
                 web_lyrics = Lyrics(artist_value, song_value)
+                # If the user input does not exist in the database, Lyrics instance is created
                 try:
                     web_lyrics.fetch_data()
+                    # fetch_data function is called to scrape the web
                 except:
                     return render(request, 'songs_app/invalid_choice.html')
+                    # Renders error page if user input is not valid
                 else:
                     song = song_form.save(commit=False)
+                    # Saves form input but doesnt commit to database
                     artist, created = Artist.objects.get_or_create(artist = web_lyrics.artist_name)
+                    # Uses get_or_create to add artist to database if it doesnt exist already
                     song.lyrics = web_lyrics.song_lyrics
                     song.artist = artist
                     song.song = web_lyrics.song_name
                     case_artist = web_lyrics.artist_name
-
+                    # Stores artist, song and lyrics in corresponding fields in database
                     try:
                         song.save()
                     except:
