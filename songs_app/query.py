@@ -14,15 +14,11 @@ def random_song_generator():
 
 def database_check():
     # Function queries database and lists all artists and songs in the database
-    artist_info = Artist.objects.all()
-    song_info = Song.objects.all()
-    artist_lst =[]
-    song_lst = []
-    for i in range(len(artist_info)):
-        artist_lst.append(str(artist_info[i].artist).upper())
+    artist_information = Artist.objects.all()
+    top_song_information = Song.objects.all()
+    artist_lst =[str(artist_information[i].artist).upper() for i in range(len(artist_information))]
+    song_lst = [str(top_song_information[i].artist).upper() for i in range(len(top_song_information))]
 
-    for i in range(len(song_info)):
-        song_lst.append(str(song_info[i].song).upper())
 
 
 
