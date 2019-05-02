@@ -10,6 +10,9 @@
     <div class="jumbotron">
       <div class="invalid_choice">
         <h1>Invalid Choice, Try Again</h1>
+        {% if no_searches %}
+          <h2>No songs searched, search for a song and try again</h2>
+        {% endif %}
         <a id='try_again' class="btn btn-primary" href="{% url 'songs_app:index' %}" role="button">Back</a>
 
       </div>

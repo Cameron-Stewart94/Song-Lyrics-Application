@@ -62,14 +62,23 @@ def index(request):
 
 def random_song(request):
     # View displays random song using random_song_generator function in queries.py
-    random_song = random_song_generator()
-    return render(request, 'songs_app/random_song.html', {'artist': random_song['artist'], 'song': random_song['song'], 'lyrics': random_song['lyrics']} )
-
+    if Song.objects.all():
+        random_song = random_song_generator()
+        return render(request, 'songs_app/random_song.html', {'artist': random_song['artist'], 'song': random_song['song'], 'lyrics': random_song['lyrics']} )
+    else:
+        return render(request, 'songs_app/invalid_choice.html', {'no_searches': True})
 
 def top_songs(request):
-    top_ten_songs = top_songs_generator()
+    number_of_songs = len(Song.objects.all())
+    if number_of_songs == 0:
+        return render(request, 'songs_app/invalid_choice.html', {'no_searches': True})
+    elif number_of_songs > 0 and number_of_songs < 10:
+        top_songs = top_songs_generator()
+        return render(request, 'songs_app/top_songs.html', {'artist_lst': top_songs['artist_lst'], 'song_lst' : top_songs['song_lst'], 'searches_lst': top_songs['searches_lst'], 'range' : range(number_of_songs)})
+    else:
     # Renders top 10 songs to html page
-    return render(request, 'songs_app/top_songs.html', {'artist_lst': top_ten_songs['artist_lst'], 'song_lst' : top_ten_songs['song_lst'], 'searches_lst': top_ten_songs['searches_lst'], 'range' : range(10)})
+        top_ten_songs = top_songs_generator()
+        return render(request, 'songs_app/top_songs.html', {'artist_lst': top_ten_songs['artist_lst'], 'song_lst' : top_ten_songs['song_lst'], 'searches_lst': top_ten_songs['searches_lst'], 'range' : range(10)})
 
 
 def lyrics(request):
