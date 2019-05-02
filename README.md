@@ -1,6 +1,6 @@
 # Song Lyrics Application
 
-Lyrics App is a django application that takes artist and song inputs, and displays the lyrics to the matching song. It also displays random lyrics and the most searched songs if requested.
+Song Lyrics Application is a django application that takes artist and song inputs, and displays the lyrics to the matching song. It also displays random lyrics and the most searched songs if requested.
 
 ## Installation
 
