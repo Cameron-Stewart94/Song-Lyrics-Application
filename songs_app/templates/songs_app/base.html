@@ -12,20 +12,17 @@
   </head>
 
   <body>
-
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="navbar-nav">
         <a id="logo" class="navbar-brand" href="{% url 'songs_app:index' %}">S.L</a>
         <a class="nav-item nav-link" href="{% url 'songs_app:top_songs' %}">Top Songs</a>
         <a class="nav-item nav-link" href="{% url 'songs_app:random_song' %}">Random</a>
       </div>
-
     </nav>
 
     {% block body_block %}
 
     {% endblock %}
-
 
     </div>
   </body>
