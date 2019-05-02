@@ -23,6 +23,7 @@ python manage.py migrate
 pythin manage.py makemigrations songs_app
 python manage.py migrate
 python manage.py runserver
+```
 
 Copy IP address displayed in console into a web browser to run the application.
 
